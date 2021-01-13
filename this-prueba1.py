@@ -90,7 +90,6 @@ def descargar_captions():
     return False
 
 def cambiar_carpeta_default():
-    global carpeta_default
     carpeta_default = filedialog.askdirectory()
     notif_carpeta.config(fg="green", text=carpeta_default)
 
