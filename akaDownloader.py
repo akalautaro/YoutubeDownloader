@@ -9,16 +9,16 @@ ventana = Tk()
 ventana.title('akaDownloader')
 ventana.minsize(540, 420)
 ventana.resizable(0, 0)
-ventana.iconbitmap('C:/Users\danie\Desktop\YoutubeDownloader\logo.ico')
+ventana.iconbitmap('C:/Users/danie/Desktop/Proyectos Programación/YoutubeDownloader/logo.ico')
 ventana.configure(bg='#2E2D2C')
 
 # Ruta default
-carpeta_default = "C:/Users/danie/Desktop/YoutubeDownloader/videos"
+carpeta_default = "C:/Users/danie/Desktop/Proyectos Programación/YoutubeDownloader/Videos"
 
 # Funciones
 def descargar_video_video():
     try:
-        video_url = url.get()
+        video_url = url_video.get()
         youtube = pytube.YouTube(video_url)
         video = youtube.streams.first()
         titulo = youtube.title
@@ -34,7 +34,7 @@ def descargar_video_video():
 
 def descargar_video_audio():
     try:
-        video_url = url.get()
+        video_url = url_video.get()
         youtube = pytube.YouTube(video_url)
         video = youtube.streams.filter(only_audio=True).first()
         titulo = youtube.title
@@ -49,7 +49,7 @@ def descargar_video_audio():
         notif_descarga.config(fg="red", text="No se completó la descarga")
 
 def descargar_playlist_video():
-    playlist_url = url.get()
+    playlist_url = url_list.get()
     playlist = pytube.contrib.playlist.Playlist(playlist_url)
     playlist_list = playlist.video_urls
     for videoUrl in playlist_list:
@@ -68,7 +68,7 @@ def descargar_playlist_video():
             notif_descarga.config(fg="red", text="No se completó la descarga")
 
 def descargar_playlist_audio():
-    playlist_url = url.get()
+    playlist_url = url_list.get()
     playlist = pytube.contrib.playlist.Playlist(playlist_url)
     playlist_list = playlist.video_urls
     for videoUrl in playlist_list:
@@ -85,10 +85,10 @@ def descargar_playlist_audio():
         except Exception as e:
             print(e)
             notif_descarga.config(fg="red", text="No se completó la descarga")
-
+"""
 def descargar_captions():
     return False
-
+"""
 def cambiar_carpeta_default():
     global carpeta_default
     carpeta_default = filedialog.askdirectory()
@@ -108,27 +108,24 @@ home_label.grid(row=0, column=0, columnspan=12)
 
 Label(ventana, text="Descargar video", fg="red", font=("Calibri", 15, "bold"), bg='#2E2D2C').grid(sticky=NW, padx=200, row=3, column = 0)
 Label(ventana, text="Ingrese el link del video a descargar", font=("Calibri", 10, "bold"), bg='#2E2D2C', fg='white').grid(sticky=NW, row=4, padx=10, pady=5)
-url = StringVar()
-Entry(ventana, width=50, textvariable=url).grid(sticky=NW, padx=10, row=5)
-# Button(ventana, width=20,text="Download",font=("Calibri",12),command=descargar_video).grid(sticky=NW, row=6, padx=10, pady=5) this
+url_video = StringVar()
+Entry(ventana, width=50, textvariable=url_video).grid(sticky=NW, padx=10, row=5)
 Button(ventana, width=15,text="Descargar video",font=("Calibri",12),command=descargar_video_video).grid(sticky=NW, row=6, padx=10, pady=5)
 Button(ventana, width=15,text="Descargar audio",font=("Calibri",12),command=descargar_video_audio).grid(sticky=NW, row=6, padx=150, pady=5)
 
 Label(ventana, text="Descargar playlist", fg="red", font=("Calibri", 15, "bold"), bg='#2E2D2C').grid(sticky=NW, padx=190, row=7)
 Label(ventana, text="Ingrese el link de la playlist a descargar", font=("Calibri", 10, "bold"), bg='#2E2D2C', fg='white').grid(sticky=NW, row=8, padx=10, pady=5)
-url = StringVar()
-Entry(ventana, width=50, textvariable=url).grid(sticky=NW, padx=10, row=9)
-# Button(ventana, width=20,text="Download",font=("Calibri",12),command=descargar_playlist_video).grid(sticky=NW, row=10, padx=10, pady=5)
+url_list = StringVar()
+Entry(ventana, width=50, textvariable=url_list).grid(sticky=NW, padx=10, row=9)
 Button(ventana, width=15,text="Descargar video",font=("Calibri",12),command=descargar_playlist_video).grid(sticky=NW, row=10, padx=10, pady=5)
 Button(ventana, width=15,text="Descargar audio",font=("Calibri",12),command=descargar_playlist_audio).grid(sticky=NW, row=10, padx=150, pady=5)
-
+"""
 Label(ventana, text="Descargar subtítulos", fg="red", font=("Calibri", 15, "bold"), bg='#2E2D2C').grid(sticky=NW, padx=180, row=11)
 Label(ventana, text="Ingrese el link del video a descargar los subtítulos", font=("Calibri", 10, "bold"), bg='#2E2D2C', fg='white').grid(sticky=NW, row=12, padx=10, pady=5)
-url = StringVar()
-Entry(ventana, width=50, textvariable=url).grid(sticky=NW, padx=10, row=13)
-# Button(ventana, width=20,text="Download",font=("Calibri",12),command=descargar_captions).grid(sticky=NW, row=14, padx=10, pady=5)
+url_caps = StringVar()
+Entry(ventana, width=50, textvariable=url_caps).grid(sticky=NW, padx=10, row=13)
 Button(ventana, width=15,text="Descargar",font=("Calibri",12),command=descargar_captions).grid(sticky=NW, row=14, padx=10, pady=5)
-
+"""
 #Notification descarga
 notif_descarga = Label(ventana,font=("Calibri",12), bg='#2E2D2C')
 notif_descarga.grid(sticky=NW, padx=180, pady=1,row=19)
