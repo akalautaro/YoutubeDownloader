@@ -9,11 +9,12 @@ ventana = Tk()
 ventana.title('akaDownloader')
 ventana.minsize(540, 420)
 ventana.resizable(0, 0)
-ventana.iconbitmap('C:/Users/danie/Desktop/Proyectos Programación/YoutubeDownloader/logo.ico')
+ventana.iconbitmap('./logo.ico')
+# ventana.iconbitmap('C:/Users/danie/Desktop/Proyectos Programación/YoutubeDownloader/logo.ico')
 ventana.configure(bg='#2E2D2C')
 
 # Ruta default
-carpeta_default = "C:/Users/danie/Desktop/Proyectos Programación/YoutubeDownloader/Videos"
+carpeta_default = "./Videos"
 
 # Funciones
 def descargar_video_video():
